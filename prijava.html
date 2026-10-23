@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BrutalWear — Prijava i korpa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;background:#0A0A0A}
+a{color:#F2F2EE}a:hover{color:#bc2624}
+.ph{background-color:#161616;background-image:repeating-linear-gradient(135deg,#1F1F1F 0 2px,transparent 2px 14px)}
+.btn{transition:transform .12s ease}
+.btn:hover{transform:translate(-3px,-3px)}
+input:focus{outline:3px solid #bc2624;outline-offset:2px}
+@media (max-width:720px){.hdr{grid-template-columns:1fr auto !important}.hdr nav{grid-column:1 / -1;order:3;justify-content:center}}
+</style>
+<style>html,body{margin:0;background:#0A0A0A}*,*::before,*::after{box-sizing:border-box}img,video{max-width:100%}</style>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-tpl">
+<div style="min-height: 100vh; background: #0A0A0A; color: #F2F2EE; font-family: 'Space Mono', ui-monospace, monospace; font-size: 15px; line-height: 1.5">
+
+<header style="border-bottom: 2px solid #F2F2EE">
+<div class="hdr" style="max-width: 1360px; margin: 0 auto; padding: 18px 24px; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px">
+<a href="index.html" style="justify-self: start; white-space: nowrap; font-family: 'Archivo Black', sans-serif; font-size: 26px; letter-spacing: -0.02em; text-decoration: none; color: #F2F2EE">BRUTAL<span style="color: {{accent}}">WEAR</span></a>
+<nav aria-label="Glavna navigacija" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase">
+<a href="index.html" style="text-decoration: none">Početna</a>
+<a href="wardrobe.html" style="text-decoration: none">Wardrobe</a>
+<a href="index.html#novi-drop" style="text-decoration: none">Novo</a>
+<a href="prijava.html" style="text-decoration: none; color: {{accent}}">Prijava</a>
+</nav>
+<div style="justify-self: end; display: flex">
+<a href="prijava.html" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; white-space: nowrap; padding: 0 16px; border: 2px solid {{accent}}; color: {{accent}}; text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 8h14l-1.5 12h-11z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+Korpa ({{totalQty}})
+</a>
+</div>
+</div>
+</header>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 56px 24px 96px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
+
+<div style="flex: 1 1 440px; min-width: 0; border: 2px solid #F2F2EE; padding: 40px">
+<h1 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase">{{heading}}</h1>
+<p style="margin: 16px 0 28px; color: #BDBDB6">{{sub}}</p>
+
+<div role="tablist" aria-label="Račun" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 2px solid #F2F2EE; margin-bottom: 28px">
+<button type="button" role="tab" aria-selected="{{loginSel}}" onClick="{{toLogin}}" style="{{loginTab}}">Prijava</button>
+<button type="button" role="tab" aria-selected="{{regSel}}" onClick="{{toReg}}" style="{{regTab}}">Registracija</button>
+</div>
+
+<form onSubmit="{{submit}}" style="display: flex; flex-direction: column; gap: 18px">
+<sc-if value="{{isReg}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-name" style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">Ime</label>
+<input id="f-name" type="text" autocomplete="name" style="min-height: 52px; padding: 0 16px; background: #0A0A0A; color: #F2F2EE; border: 2px solid #F2F2EE; font-family: inherit; font-size: 15px">
+</div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-email" style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">E-mail</label>
+<input id="f-email" type="email" autocomplete="email" placeholder="ime@primjer.com" style="min-height: 52px; padding: 0 16px; background: #0A0A0A; color: #F2F2EE; border: 2px solid #F2F2EE; font-family: inherit; font-size: 15px">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<label for="f-pass" style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">Lozinka</label>
+<sc-if value="{{isLogin}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{forgot}}" style="min-height: 44px; padding: 0; background: none; border: none; color: #F2F2EE; font-family: inherit; font-size: 12px; text-decoration: underline; cursor: pointer">Zaboravio si?</button></sc-if>
+</div>
+<input id="f-pass" type="password" autocomplete="current-password" aria-invalid="{{passInvalid}}" aria-describedby="pass-err" onInput="{{clearPass}}" style="min-height: 52px; padding: 0 16px; background: #0A0A0A; color: #F2F2EE; border: 2px solid {{passBorder}}; font-family: inherit; font-size: 15px">
+<sc-if value="{{passErr}}" hint-placeholder-val="{{true}}">
+<span id="pass-err" role="alert" style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: #FF4D4D"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 7v6M12 17h.01"/></svg>Pogrešna lozinka. Pokušaj ponovo.</span>
+</sc-if>
+</div>
+<sc-if value="{{isReg}}" hint-placeholder-val="{{false}}">
+<label style="display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: #BDBDB6; cursor: pointer">
+<input type="checkbox" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #F04CC0">
+Javi mi prvi kad izlazi novi drop.
+</label>
+</sc-if>
+<button class="btn" type="submit" style="margin-top: 8px; min-height: 60px; background: {{accent}}; color: #0A0A0A; border: 2px solid {{accent}}; box-shadow: 6px 6px 0 #F2F2EE; font-family: inherit; font-weight: 700; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer">{{cta}}</button>
+</form>
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<div role="status" style="margin-top: 20px; border: 2px solid {{accent}}; padding: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">{{doneMsg}}</div>
+</sc-if>
+</div>
+
+<div style="flex: 999 1 520px; min-width: 0">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; border-bottom: 2px solid #F2F2EE; padding-bottom: 16px">
+<h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: clamp(32px, 4vw, 48px); line-height: 0.8; text-transform: uppercase; letter-spacing: -0.02em">Korpa</h2>
+<span style="color: #8A8A84; font-size: 13px">{{totalQty}} komada</span>
+</div>
+
+<sc-for list="{{cart}}" as="it" hint-placeholder-count="2">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 24px 0; border-bottom: 1px solid #3A3A3A; align-items: center">
+<a href="{{it.href}}" aria-label="Pogledaj {{it.name}}" style="width: 112px; height: 136px; border: 2px solid #F2F2EE; flex: none; background: #FFFFFF; overflow: hidden; display: block"><img src="{{it.img}}" alt="{{it.alt}}" style="width: 100%; height: 100%; object-fit: contain; display: block"></a>
+<div style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 16px">{{it.name}}</span>
+<span style="color: #8A8A84; font-size: 13px">{{it.color}} · Veličina {{it.size}}</span>
+<button type="button" onClick="{{it.remove}}" style="align-self: flex-start; min-height: 44px; padding: 0; background: none; border: none; color: #BDBDB6; font-family: inherit; font-size: 12px; text-decoration: underline; cursor: pointer">Ukloni</button>
+</div>
+<div style="display: flex; align-items: center; border: 2px solid #F2F2EE">
+<button type="button" onClick="{{it.dec}}" aria-label="Smanji količinu" style="width: 44px; height: 44px; background: none; border: none; color: #F2F2EE; font-family: inherit; font-size: 18px; cursor: pointer">−</button>
+<span style="width: 36px; text-align: center; font-weight: 700">{{it.qty}}</span>
+<button type="button" onClick="{{it.inc}}" aria-label="Povećaj količinu" style="width: 44px; height: 44px; background: none; border: none; color: #F2F2EE; font-family: inherit; font-size: 18px; cursor: pointer">+</button>
+</div>
+<span style="width: 110px; text-align: right; font-weight: 700; color: {{accent}}">{{it.lineTotal}}</span>
+</div>
+</sc-for>
+
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+<div style="padding: 48px 0; display: flex; flex-direction: column; gap: 20px; align-items: flex-start">
+<p style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: 28px; text-transform: uppercase">Korpa je prazna.</p>
+<a class="btn" href="wardrobe.html" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 28px; background: {{accent}}; color: #0A0A0A; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase">Pogledaj Wardrobe</a>
+</div>
+</sc-if>
+
+<div style="margin-top: 32px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between"><span style="color: #BDBDB6">Međuzbir</span><span>{{subtotal}}</span></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #BDBDB6">Dostava</span><span>{{shipping}}</span></div>
+<div style="display: flex; justify-content: space-between; border-top: 2px solid #F2F2EE; padding-top: 16px; margin-top: 4px; font-size: 20px; font-weight: 700; text-transform: uppercase"><span>Ukupno</span><span style="color: {{accent}}">{{total}}</span></div>
+</div>
+
+<div style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px">
+<button class="btn" type="button" onClick="{{checkout}}" style="flex: 1 1 260px; min-height: 60px; background: #F2F2EE; color: #0A0A0A; border: 2px solid #F2F2EE; box-shadow: 6px 6px 0 {{accent}}; font-family: inherit; font-weight: 700; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer">Na plaćanje</button>
+<a href="wardrobe.html" style="flex: 1 1 200px; min-height: 60px; display: flex; align-items: center; justify-content: center; border: 2px solid #F2F2EE; text-decoration: none; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase">Nastavi kupovinu</a>
+</div>
+<sc-if value="{{checkoutMsg}}" hint-placeholder-val="{{false}}">
+<div role="status" style="margin-top: 20px; border: 2px solid {{accent}}; padding: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">{{checkoutMsg}}</div>
+</sc-if>
+</div>
+</section>
+
+</div>
+</template>
+<script>
+/* dc-lite.js — mali runtime za BrutalWear stranice.
+   Čita <template id="dc-tpl">, popunjava {{rupe}}, <sc-for>, <sc-if>
+   i ponovo crta stranicu kad se stanje promijeni (setState). */
+(function () {
+  'use strict';
+
+  class DCLogic {
+    constructor(props) { this.props = props || {}; this.state = {}; }
+    setState(patch) {
+      const next = typeof patch === 'function' ? patch(this.state, this.props) : patch;
+      this.state = Object.assign({}, this.state, next);
+      if (this.__render) this.__render();
+    }
+    forceUpdate() { if (this.__render) this.__render(); }
+  }
+  window.DCLogic = DCLogic;
+
+  const HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+  const WHOLE = /^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/;
+
+  function lookup(scope, path) {
+    path = path.trim();
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    if (/^(['"]).*\1$/.test(path)) return path.slice(1, -1);
+    let v = scope;
+    for (const key of path.split('.')) {
+      if (v == null) return undefined;
+      v = v[key];
+    }
+    return v;
+  }
+
+  function interp(str, scope) {
+    return str.replace(HOLE, (_, p) => {
+      const v = lookup(scope, p);
+      return v == null ? '' : String(v);
+    });
+  }
+
+  function wholePath(str) {
+    const m = str && str.match(WHOLE);
+    return m ? m[1] : null;
+  }
+
+  const BOOL_PROPS = { muted: 'muted', autoplay: 'autoplay', loop: 'loop', playsinline: 'playsInline', checked: 'checked', disabled: 'disabled' };
+
+  function build(src, scope, out, refs) {
+    for (const node of src.childNodes) {
+      if (node.nodeType === 3) {
+        out.appendChild(document.createTextNode(interp(node.nodeValue, scope)));
+        continue;
+      }
+      if (node.nodeType !== 1) continue;
+      const tag = node.localName;
+
+      if (tag === 'sc-for') {
+        const list = lookup(scope, wholePath(node.getAttribute('list')) || '') || [];
+        const as = node.getAttribute('as') || 'item';
+        list.forEach((item, i) => {
+          const s = Object.create(scope);
+          s[as] = item;
+          s.$index = i;
+          build(node, s, out, refs);
+        });
+        continue;
+      }
+      if (tag === 'sc-if') {
+        const p = wholePath(node.getAttribute('value'));
+        if (p && lookup(scope, p)) build(node, scope, out, refs);
+        continue;
+      }
+
+      const el = document.createElementNS(node.namespaceURI, node.localName);
+      let selectValue = null;
+      for (const attr of Array.from(node.attributes)) {
+        const name = attr.name;
+        const raw = attr.value;
+        const wp = wholePath(raw);
+        if (name.length > 2 && name.startsWith('on') && wp) {
+          const fn = lookup(scope, wp);
+          if (typeof fn === 'function') el.addEventListener(name.slice(2), fn);
+          continue;
+        }
+        if (name === 'ref') {
+          const fn = wp ? lookup(scope, wp) : null;
+          if (typeof fn === 'function') refs.push(() => fn(el));
+          continue;
+        }
+        if (name.startsWith('hint-')) continue;
+        let value;
+        if (wp) {
+          value = lookup(scope, wp);
+          if (value === false || value == null) continue;
+          if (value === true) {
+            el.setAttribute(name, '');
+            if (BOOL_PROPS[name]) el[BOOL_PROPS[name]] = true;
+            continue;
+          }
+          value = String(value);
+        } else {
+          value = interp(raw, scope);
+        }
+        if (tag === 'select' && name === 'value') { selectValue = value; continue; }
+        el.setAttribute(name, value);
+      }
+      build(node, scope, el, refs);
+      if (selectValue !== null) el.value = selectValue;
+      out.appendChild(el);
+    }
+  }
+
+  window.DCLite = {
+    mount(Component, props) {
+      const tpl = document.getElementById('dc-tpl').content;
+      const root = document.getElementById('dc-root');
+      const comp = new Component(props || {});
+      let first = true;
+      comp.__render = function () {
+        // sačuvaj ono što je korisnik upisao u polja
+        const saved = {};
+        root.querySelectorAll('input[id], textarea[id]').forEach((f) => {
+          saved[f.id] = f.type === 'checkbox' ? f.checked : f.value;
+        });
+        const focusedId = document.activeElement && document.activeElement.id;
+
+        const vals = comp.renderVals() || {};
+        const refs = [];
+        const frag = document.createDocumentFragment();
+        build(tpl, vals, frag, refs);
+        root.replaceChildren(frag);
+
+        Object.keys(saved).forEach((id) => {
+          const f = document.getElementById(id);
+          if (!f) return;
+          if (f.type === 'checkbox') f.checked = saved[id]; else f.value = saved[id];
+        });
+        if (focusedId) { const f = document.getElementById(focusedId); if (f) f.focus({ preventScroll: true }); }
+        refs.forEach((r) => r());
+
+        if (first) {
+          first = false;
+          if (typeof comp.componentDidMount === 'function') comp.componentDidMount();
+          if (location.hash) {
+            const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+            if (t) t.scrollIntoView();
+          }
+        } else if (typeof comp.componentDidUpdate === 'function') {
+          comp.componentDidUpdate();
+        }
+      };
+      comp.__render();
+    }
+  };
+})();
+
+</script>
+<script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mode: 'login',
+      done: false,
+      cart: [
+        { id: 1, name: 'Bazzi feat. 21 Savage', color: 'Crna', size: 'L', qty: 1, price: 45, href: 'bazzi-feat-21-savage.html', img: 'assets/7e241726627507a5102ebfadac0380e5.png', alt: 'Isprana tamnosiva majica s plavim portretom' },
+        { id: 2, name: 'Kepler-228', color: 'Crna', size: 'XL', qty: 1, price: 35, href: 'kepler-228.html', img: 'assets/8cb81048eaea904ff1c1d6d913b2e0e8.png', alt: 'Crna oversize majica s leđa, s linijskom grafikom orbita' }
+      ]
+    };
+  }
+  setQty(id, d) {
+    this.setState({ cart: this.state.cart.map((c) => c.id === id ? { ...c, qty: Math.max(1, c.qty + d) } : c) });
+  }
+  renderVals() {
+    const accent = this.props.accent ?? '#F04CC0';
+    const isLogin = this.state.mode === 'login';
+    const tab = 'min-height: 52px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; ';
+    const on = tab + 'background: #F2F2EE; color: #0A0A0A';
+    const off = tab + 'background: transparent; color: #F2F2EE';
+    const eur = (n) => n + ' €';
+    const subtotalN = this.state.cart.reduce((s, c) => s + c.price * c.qty, 0);
+    const shippingN = this.state.cart.length ? 5 : 0;
+    const cart = this.state.cart.map((c) => ({
+      ...c,
+      lineTotal: eur(c.price * c.qty),
+      inc: () => this.setQty(c.id, 1),
+      dec: () => this.setQty(c.id, -1),
+      remove: () => this.setState({ cart: this.state.cart.filter((x) => x.id !== c.id) })
+    }));
+    return {
+      accent,
+      isLogin,
+      isReg: !isLogin,
+      loginSel: isLogin ? 'true' : 'false',
+      regSel: isLogin ? 'false' : 'true',
+      loginTab: isLogin ? on : off,
+      regTab: isLogin ? off : on,
+      heading: isLogin ? 'Prijavi se' : 'Uđi u ekipu',
+      sub: isLogin ? 'Uloguj se i završi narudžbu brže.' : 'Napravi račun: prati narudžbe i saznaj prvi za novi drop.',
+      cta: isLogin ? 'Prijavi se' : 'Napravi račun',
+      toLogin: () => this.setState({ mode: 'login', done: false, passErr: false }),
+      toReg: () => this.setState({ mode: 'reg', done: false, passErr: false }),
+      submit: (e) => { if (e && e.preventDefault) e.preventDefault(); if (isLogin) { this.setState({ passErr: true, done: false }); return; } this.setState({ done: true, passErr: false, msg: 'Račun napravljen. Dobrodošao u ekipu.' }); },
+      passErr: isLogin,
+      passInvalid: isLogin ? 'true' : 'false',
+      passBorder: isLogin ? '#FF4D4D' : '#F2F2EE',
+      clearPass: () => {},
+      forgot: () => this.setState({ done: true, msg: 'Link za novu lozinku stiže na tvoj e-mail.' }),
+      done: this.state.done,
+      doneMsg: this.state.msg || '',
+      checkout: () => this.setState({ checkoutMsg: this.state.cart.length === 0 ? 'Korpa je prazna. Dodaj nešto iz Wardrobea.' : (this.state.done ? 'Prelazak na plaćanje… [PLATNI SISTEM]' : 'Prijavi se lijevo ili nastavi kao gost — [PLATNI SISTEM]') }),
+      checkoutMsg: this.state.checkoutMsg || '',
+      cart,
+      empty: cart.length === 0,
+      subtotal: eur(subtotalN),
+      shipping: eur(shippingN),
+      total: eur(subtotalN + shippingN),
+      totalQty: this.state.cart.reduce((n, c) => n + c.qty, 0)
+    };
+  }
+}
+DCLite.mount(Component, {"accent": "#bc2624"});
+</script>
+</body>
+</html>

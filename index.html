@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BrutalWear — Početna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;background:#0A0A0A}
+a{color:#F2F2EE}a:hover{color:#bc2624}
+.ph{background-color:#161616;background-image:repeating-linear-gradient(135deg,#1F1F1F 0 2px,transparent 2px 14px)}
+.btn{transition:transform .12s ease}
+.btn:hover{transform:translate(-3px,-3px)}
+.hero-card img{transition:filter .35s ease,transform .6s ease}
+.hero-card:hover img,.hero-card:focus-visible img{filter:brightness(.55);transform:scale(1.04)}
+@media (prefers-reduced-motion:reduce){.hero-card img{transition:none}.hero-card:hover img{transform:none}}
+@media (max-width:720px){.hide-sm{display:none !important}.hdr{grid-template-columns:1fr auto !important}.hdr nav{grid-column:1 / -1;order:3;justify-content:center}}
+.map-card{background-color:#161616;background-image:linear-gradient(#202020 1px,transparent 1px),linear-gradient(90deg,#202020 1px,transparent 1px);background-size:40px 40px;transition:border-color .2s ease}.map-card:hover{border-color:#bc2624}
+</style>
+<style>html,body{margin:0;background:#0A0A0A}*,*::before,*::after{box-sizing:border-box}img,video{max-width:100%}</style>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-tpl">
+<div style="min-height: 100vh; background: #0A0A0A; color: #F2F2EE; font-family: 'Space Mono', ui-monospace, monospace; font-size: 15px; line-height: 1.5">
+
+<a href="wardrobe.html" style="display: block; background: {{accent}}; color: #f2f2ee; text-align: center; padding: 10px 16px; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none">Besplatna dostava iznad [IZNOS] · Novi drop je vani →</a>
+
+<header style="border-bottom: 2px solid #F2F2EE">
+<div class="hdr" style="max-width: 1360px; margin: 0 auto; padding: 18px 24px; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px">
+<a href="index.html" style="justify-self: start; white-space: nowrap; font-family: 'Archivo Black', sans-serif; font-size: 26px; letter-spacing: -0.02em; text-decoration: none; color: #F2F2EE">BRUTAL<span style="color: {{accent}}">WEAR</span></a>
+<nav aria-label="Glavna navigacija" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; width: 366px; height: 24px">
+<a href="index.html" style="text-decoration: none; color: {{accent}}">Početna</a>
+<a href="wardrobe.html" style="text-decoration: none">Wardrobe</a>
+<a href="#novi-drop" style="text-decoration: none">Novo</a>
+<a href="prijava.html" style="text-decoration: none">Prijava</a>
+</nav>
+<div style="justify-self: end; display: flex">
+<a href="prijava.html" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; white-space: nowrap; padding: 0 16px; border: 2px solid #F2F2EE; text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 8h14l-1.5 12h-11z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg>
+Korpa (0)
+</a>
+</div>
+</div>
+</header>
+
+<div style="position: relative; overflow: hidden; background: #0A0A0A">
+<video src="assets/988365a4dda1d881bfa953bcad4d3595.mp4" ref="{{videoRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none"></video>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: #0A0A0A; opacity: {{overlay}}; z-index: 1; pointer-events: none"></div>
+<section style="max-width: 1360px; margin: 0 auto; padding: 72px 24px 56px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-end; position: relative; z-index: 2">
+<div style="flex: 999 1 560px; min-width: 0">
+<sc-if value="{{eyebrowOn}}" hint-placeholder-val="{{true}}">
+<div style="font-size: {{eyebrowSize}}px; font-weight: 700; letter-spacing: {{eyebrowTracking}}em; text-transform: {{eyebrowCase}}; color: {{eyebrowColor}}; margin-bottom: {{eyebrowGap}}px; white-space: pre-line">{{eyebrowText}}</div>
+</sc-if>
+<h1 style="margin: 0 0 0 -0.055em; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: clamp(64px, 11vw, 168px); line-height: 0.86; letter-spacing: -0.04em; text-transform: uppercase; width: 783px">Bez<br>filtera.</h1>
+<div style="margin: 28px 0 0; max-width: 520px; font-size: 16px; color: #BDBDB6"><p data-path-to-node="4,0">Masivni krojevi i dugotrajan, oštar print. Otporno na pranje, imuno na prolazne trendove.</p></div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 36px">
+<a class="btn" href="wardrobe.html" style="display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 28px; background: {{accent}}; color: #0A0A0A; border: 2px solid {{accent}}; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase"><span style="color: #f2f2ee">Pogledaj Wardrobe</span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="stroke: #f2f2ee"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+<a class="btn" href="prijava.html" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 28px; background: transparent; color: #F2F2EE; border: 2px solid #F2F2EE; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase">Prijavi se</a>
+</div>
+</div>
+<a class="ph hero-card" href="bazzi-feat-21-savage.html" aria-label="Pogledaj Heavy Tee" style="flex: 1 1 380px; min-width: 0; height: 520px; border: 2px solid #F2F2EE; position: relative; display: flex; align-items: center; justify-content: center; text-decoration: none; overflow: hidden">
+<img src="assets/68f7eb28203e0127b25c4121b7153060.jpg" alt="Dvoje modela u oversize majicama s grafikama ispred betonskog zida s grafitima" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block">
+<div style="position: absolute; left: -2px; bottom: -2px; background: #F2F2EE; color: #0A0A0A; padding: 8px 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase">HEAVY TEE ·&nbsp;320 G/M² →</div>
+</a>
+</section>
+</div>
+
+<hr style="margin: 0; border: none; border-top: 0.5px solid #F2F2EE">
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 96px 24px 40px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 40px">
+<h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: clamp(40px, 6vw, 80px); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase">Wardrobe</h2>
+<p style="margin: 0; max-width: 360px; color: #BDBDB6">Tri linije. Jedan stav. Izaberi svoju i uđi u ponudu.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px">
+<sc-for list="{{lines}}" as="line" hint-placeholder-count="3">
+<article style="border: 2px solid #F2F2EE; display: flex; flex-direction: column">
+<div class="ph" style="height: 380px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #F2F2EE; position: relative">
+<sc-if value="{{line.img}}" hint-placeholder-val="{{false}}">
+<img src="{{line.img}}" alt="{{line.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block">
+</sc-if>
+<sc-if value="{{line.noImg}}" hint-placeholder-val="{{true}}">
+<span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8A84">[FOTO — {{line.name}}]</span>
+</sc-if>
+<span style="position: absolute; top: 14px; left: 14px; font-family: 'Archivo Black', sans-serif; font-size: 48px; line-height: 1; color: {{accent}}; z-index: 1">{{line.no}}</span>
+</div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1">
+<h3 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 30px; text-transform: uppercase; letter-spacing: -0.02em">{{line.name}}</h3>
+<p style="margin: 0; color: #BDBDB6; flex-grow: 1">{{line.desc}}</p>
+<a class="btn" href="wardrobe.html" style="margin-top: 14px; display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 20px; background: #F2F2EE; color: #0A0A0A; text-decoration: none; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase">Pogledaj Wardrobe
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</article>
+</sc-for>
+</div>
+</section>
+
+<section id="novi-drop" style="max-width: 1360px; margin: 0 auto; padding: 72px 24px; scroll-margin-top: 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 32px; border-bottom: 2px solid #F2F2EE; padding-bottom: 20px">
+<h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: clamp(32px, 4vw, 48px); text-transform: uppercase; letter-spacing: -0.02em">Novi drop</h2>
+<a href="wardrobe.html" style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-underline-offset: 6px; min-height: 44px; display: inline-flex; align-items: center">Sve majice →</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px">
+<sc-for list="{{drops}}" as="p" hint-placeholder-count="4">
+<a href="{{p.href}}" style="text-decoration: none; color: #F2F2EE; display: flex; flex-direction: column; gap: 12px">
+<div class="ph" style="aspect-ratio: 4 / 5; border: 2px solid #F2F2EE; display: flex; align-items: center; justify-content: center; position: relative">
+<sc-if value="{{p.img}}" hint-placeholder-val="{{false}}">
+<img src="{{p.img}}" alt="{{p.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; background: #FFFFFF; display: block">
+</sc-if>
+<sc-if value="{{p.noImg}}" hint-placeholder-val="{{true}}">
+<span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8A84">[FOTO]</span>
+</sc-if>
+<sc-if value="{{p.isNew}}" hint-placeholder-val="{{true}}">
+<span style="position: absolute; top: 12px; left: 12px; background: {{accent}}; color: #f2f2ee; padding: 4px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em">NOVO</span>
+</sc-if>
+</div>
+<div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em"><span>{{p.name}}</span><span style="color: {{accent}}; white-space: nowrap">{{p.price}}</span>
+</div>
+<span style="font-size: 12px; color: #8A8A84; margin-top: -8px">{{p.color}}</span>
+</a>
+</sc-for>
+</div>
+</section>
+
+<section id="utisci" aria-labelledby="utisci-naslov" style="max-width: 1360px; margin: 0 auto; padding: 72px 24px 24px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 32px; border-bottom: 2px solid #F2F2EE; padding-bottom: 20px">
+<h2 id="utisci-naslov" style="margin: 0; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: clamp(32px, 4vw, 48px); text-transform: uppercase; letter-spacing: -0.02em">Ekipa <span style="color: {{accent}}">kaže</span></h2>
+<p style="margin: 0; max-width: 360px; color: #BDBDB6">Utisci kupaca koji već nose BrutalWear.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px">
+<sc-for list="{{reviews}}" as="r" hint-placeholder-count="3">
+<figure style="margin: 0; border: 2px solid #F2F2EE; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div role="img" aria-label="Ocjena: [BROJ] od 5" style="display: flex; gap: 4px; color: {{accent}}">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg>
+</div>
+<blockquote style="margin: 0; font-size: 18px; line-height: 1.45; flex-grow: 1">„{{r.text}}“</blockquote>
+<figcaption style="display: flex; align-items: center; gap: 14px; border-top: 1px solid #3A3A3A; padding-top: 18px">
+<span aria-hidden="true" style="width: 44px; height: 44px; border: 2px solid {{accent}}; flex: none; display: flex; align-items: center; justify-content: center; font-family: 'Archivo Black', sans-serif; font-size: 16px; letter-spacing: 0.02em; color: #F2F2EE; background: #161616">{{r.initials}}</span>
+<span style="display: flex; flex-direction: column"><span style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">{{r.name}}</span><span style="font-size: 12px; color: #8A8A84">{{r.verb}}: {{r.item}}</span></span>
+</figcaption>
+</figure>
+</sc-for>
+</div>
+</section>
+
+<section id="lokacija" aria-labelledby="lokacija-naslov" style="max-width: 1360px; margin: 0 auto; padding: 72px 24px 24px; scroll-margin-top: 24px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 32px; border-bottom: 2px solid #F2F2EE; padding-bottom: 20px">
+<h2 id="lokacija-naslov" style="margin: 0; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: clamp(32px, 4vw, 48px); text-transform: uppercase; letter-spacing: -0.02em">Loka<span style="color: {{accent}}">cija</span></h2>
+<p style="margin: 0; max-width: 360px; color: #BDBDB6">Dođi, probaj kroj uživo i pokupi narudžbu bez čekanja dostave.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+<div style="flex: 1 1 380px; min-width: 0; border: 2px solid #F2F2EE; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; gap: 16px; align-items: center">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" aria-hidden="true" style="flex: none"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8A84">Adresa</span>
+</div>
+<div style="padding-left: 44px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; line-height: 1.1; text-transform: uppercase">Slobodana Kusturica 13</span>
+<span style="color: #BDBDB6">78000 Banja Luka, Bosna i Hercegovina</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; gap: 16px; align-items: center">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8A84">Radno vrijeme</span>
+</div>
+<div style="padding-left: 44px; display: flex; flex-direction: column; gap: 4px">
+<span>Pon–Pet: 08:00–15:00</span>
+<span>Subota: 08:00–13:00</span>
+<span style="color: #8A8A84">Nedjelja: zatvoreno</span>
+</div>
+</div>
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Slobodana+Kusturica+13%2C+Banja+Luka" target="_blank" rel="noopener" style="margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 28px; background: {{accent}}; color: #F2F2EE; text-decoration: none; box-shadow: 6px 6px 0 #F2F2EE; font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase">Otvori u Google Mapama →</a>
+</div>
+<a href="https://www.google.com/maps/search/?api=1&amp;query=Slobodana+Kusturica+13%2C+Banja+Luka" target="_blank" rel="noopener" aria-label="Otvori lokaciju BrutalWear u Google Mapama" class="map-card" style="flex: 999 1 520px; min-width: 0; min-height: 360px; border: 2px solid #F2F2EE; position: relative; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #F2F2EE; overflow: hidden">
+<span aria-hidden="true" style="position: absolute; left: -10%; right: -10%; top: 58%; height: 14px; background: #2A2A2A; transform: rotate(-8deg)"></span>
+<span aria-hidden="true" style="position: absolute; top: -10%; bottom: -10%; left: 38%; width: 10px; background: #2A2A2A; transform: rotate(12deg)"></span>
+<span aria-hidden="true" style="position: absolute; left: -10%; right: -10%; top: 26%; height: 6px; background: #242424; transform: rotate(4deg)"></span>
+<span style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px">
+<svg width="56" height="56" viewBox="0 0 24 24" fill="{{accent}}" stroke="#0A0A0A" stroke-width="1" aria-hidden="true"><path d="M12 22s-7.5-6.6-7.5-12.3a7.5 7.5 0 0 1 15 0C19.5 15.4 12 22 12 22z"></path><circle cx="12" cy="9.7" r="2.6" fill="#0A0A0A"></circle></svg>
+<span style="background: #0A0A0A; border: 2px solid #F2F2EE; padding: 8px 14px; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase">BrutalWear · Banja Luka</span>
+</span>
+</a>
+</div>
+</section>
+
+<section style="border-top: 2px solid #F2F2EE; border-bottom: 2px solid #F2F2EE; margin-top: 48px">
+<div style="max-width: 1360px; margin: 0 auto; padding: 80px 24px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 480px; min-width: 0">
+<h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: clamp(40px, 6vw, 76px); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase">Uđi u <span style="color: {{accent}}">ekipu.</span></h2>
+<p style="margin: 20px 0 0; max-width: 460px; color: #BDBDB6">Prijavi se i saznaj prvi kad izlazi novi drop. Članovi dobijaju [POGODNOST] na prvu narudžbu.</p>
+</div>
+<div style="flex: 1 1 420px; min-width: 0">
+<sc-if value="{{notJoined}}" hint-placeholder-val="{{true}}">
+<form onSubmit="{{join}}" style="display: flex; flex-wrap: wrap; gap: 0">
+<label for="nl-email" style="width: 100%; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px">Tvoj e-mail</label>
+<input id="nl-email" type="email" required="" placeholder="ime@primjer.com" style="flex: 1 1 220px; min-width: 0; min-height: 56px; padding: 0 18px; background: #0A0A0A; color: #F2F2EE; border: 2px solid #F2F2EE; font-family: inherit; font-size: 15px; outline-color: {{accent}}">
+<button class="btn" type="submit" style="min-height: 56px; padding: 0 28px; background: {{accent}}; color: #0A0A0A; border: 2px solid {{accent}}; font-family: inherit; font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer">Prijavi se</button>
+</form>
+</sc-if>
+<sc-if value="{{joined}}" hint-placeholder-val="{{false}}">
+<div role="status" style="border: 2px solid {{accent}}; padding: 24px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase">Prijavljen si. Vidimo se na sljedećem dropu.</div>
+</sc-if>
+</div>
+</div>
+</section>
+
+<footer style="max-width: 1360px; margin: 0 auto; padding: 56px 24px 40px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; font-size: 13px; height: 89px">
+<div style="flex: 1 1 280px">
+<a href="index.html" style="font-family: 'Archivo Black', sans-serif; font-size: 40px; letter-spacing: -0.03em; text-decoration: none; color: #F2F2EE">BRUTAL<span style="color: {{accent}}">WEAR</span></a>
+<p style="margin: 12px 0 0; color: #8A8A84">© [2026] BrutalWear. Sva prava zadržana.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8A84">Shop</span>
+<a href="wardrobe.html">Wardrobe</a><a href="#novi-drop">Novi drop</a><a href="prijava.html">Korpa</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8A84">Info</span>
+<a href="#lokacija">Lokacija</a><a href="bazzi-feat-21-savage.html">Dostava i povrat</a><a href="bazzi-feat-21-savage.html">Tabela veličina</a><a href="mailto:kontakt@[DOMENA]">Kontakt</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8A84">Prati</span>
+<a href="https://www.instagram.com/">Instagram</a><a href="https://www.tiktok.com/">TikTok</a>
+</div>
+</div>
+</footer>
+
+</div>
+</template>
+<script>
+/* dc-lite.js — mali runtime za BrutalWear stranice.
+   Čita <template id="dc-tpl">, popunjava {{rupe}}, <sc-for>, <sc-if>
+   i ponovo crta stranicu kad se stanje promijeni (setState). */
+(function () {
+  'use strict';
+
+  class DCLogic {
+    constructor(props) { this.props = props || {}; this.state = {}; }
+    setState(patch) {
+      const next = typeof patch === 'function' ? patch(this.state, this.props) : patch;
+      this.state = Object.assign({}, this.state, next);
+      if (this.__render) this.__render();
+    }
+    forceUpdate() { if (this.__render) this.__render(); }
+  }
+  window.DCLogic = DCLogic;
+
+  const HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+  const WHOLE = /^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/;
+
+  function lookup(scope, path) {
+    path = path.trim();
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    if (/^(['"]).*\1$/.test(path)) return path.slice(1, -1);
+    let v = scope;
+    for (const key of path.split('.')) {
+      if (v == null) return undefined;
+      v = v[key];
+    }
+    return v;
+  }
+
+  function interp(str, scope) {
+    return str.replace(HOLE, (_, p) => {
+      const v = lookup(scope, p);
+      return v == null ? '' : String(v);
+    });
+  }
+
+  function wholePath(str) {
+    const m = str && str.match(WHOLE);
+    return m ? m[1] : null;
+  }
+
+  const BOOL_PROPS = { muted: 'muted', autoplay: 'autoplay', loop: 'loop', playsinline: 'playsInline', checked: 'checked', disabled: 'disabled' };
+
+  function build(src, scope, out, refs) {
+    for (const node of src.childNodes) {
+      if (node.nodeType === 3) {
+        out.appendChild(document.createTextNode(interp(node.nodeValue, scope)));
+        continue;
+      }
+      if (node.nodeType !== 1) continue;
+      const tag = node.localName;
+
+      if (tag === 'sc-for') {
+        const list = lookup(scope, wholePath(node.getAttribute('list')) || '') || [];
+        const as = node.getAttribute('as') || 'item';
+        list.forEach((item, i) => {
+          const s = Object.create(scope);
+          s[as] = item;
+          s.$index = i;
+          build(node, s, out, refs);
+        });
+        continue;
+      }
+      if (tag === 'sc-if') {
+        const p = wholePath(node.getAttribute('value'));
+        if (p && lookup(scope, p)) build(node, scope, out, refs);
+        continue;
+      }
+
+      const el = document.createElementNS(node.namespaceURI, node.localName);
+      let selectValue = null;
+      for (const attr of Array.from(node.attributes)) {
+        const name = attr.name;
+        const raw = attr.value;
+        const wp = wholePath(raw);
+        if (name.length > 2 && name.startsWith('on') && wp) {
+          const fn = lookup(scope, wp);
+          if (typeof fn === 'function') el.addEventListener(name.slice(2), fn);
+          continue;
+        }
+        if (name === 'ref') {
+          const fn = wp ? lookup(scope, wp) : null;
+          if (typeof fn === 'function') refs.push(() => fn(el));
+          continue;
+        }
+        if (name.startsWith('hint-')) continue;
+        let value;
+        if (wp) {
+          value = lookup(scope, wp);
+          if (value === false || value == null) continue;
+          if (value === true) {
+            el.setAttribute(name, '');
+            if (BOOL_PROPS[name]) el[BOOL_PROPS[name]] = true;
+            continue;
+          }
+          value = String(value);
+        } else {
+          value = interp(raw, scope);
+        }
+        if (tag === 'select' && name === 'value') { selectValue = value; continue; }
+        el.setAttribute(name, value);
+      }
+      build(node, scope, el, refs);
+      if (selectValue !== null) el.value = selectValue;
+      out.appendChild(el);
+    }
+  }
+
+  window.DCLite = {
+    mount(Component, props) {
+      const tpl = document.getElementById('dc-tpl').content;
+      const root = document.getElementById('dc-root');
+      const comp = new Component(props || {});
+      let first = true;
+      comp.__render = function () {
+        // sačuvaj ono što je korisnik upisao u polja
+        const saved = {};
+        root.querySelectorAll('input[id], textarea[id]').forEach((f) => {
+          saved[f.id] = f.type === 'checkbox' ? f.checked : f.value;
+        });
+        const focusedId = document.activeElement && document.activeElement.id;
+
+        const vals = comp.renderVals() || {};
+        const refs = [];
+        const frag = document.createDocumentFragment();
+        build(tpl, vals, frag, refs);
+        root.replaceChildren(frag);
+
+        Object.keys(saved).forEach((id) => {
+          const f = document.getElementById(id);
+          if (!f) return;
+          if (f.type === 'checkbox') f.checked = saved[id]; else f.value = saved[id];
+        });
+        if (focusedId) { const f = document.getElementById(focusedId); if (f) f.focus({ preventScroll: true }); }
+        refs.forEach((r) => r());
+
+        if (first) {
+          first = false;
+          if (typeof comp.componentDidMount === 'function') comp.componentDidMount();
+          if (location.hash) {
+            const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+            if (t) t.scrollIntoView();
+          }
+        } else if (typeof comp.componentDidUpdate === 'function') {
+          comp.componentDidUpdate();
+        }
+      };
+      comp.__render();
+    }
+  };
+})();
+
+</script>
+<script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { joined: false };
+  }
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#F04CC0',
+      overlay: this.props.overlay ?? 0.65,
+      videoRef: (el) => { if (el) { el.muted = true; const p = el.play && el.play(); if (p && p.catch) p.catch(() => {}); } },
+      eyebrowOn: this.props.eyebrowOn ?? true,
+      eyebrowText: this.props.eyebrowText ?? 'Ulična odjeća · Drop [01]',
+      eyebrowColor: this.props.eyebrowColor ?? this.props.accent ?? '#F04CC0',
+      eyebrowSize: this.props.eyebrowSize ?? 12,
+      eyebrowTracking: this.props.eyebrowTracking ?? 0.2,
+      eyebrowCase: this.props.eyebrowCase ?? 'uppercase',
+      eyebrowGap: this.props.eyebrowGap ?? 4,
+      lines: [
+        { no: '01', name: 'Basic Heavy', desc: 'Debeli pamuk, čisti kroj. Majica koja traje duže od trenda.', img: 'assets/476749658f7195886d6bcb12f350297d.jpg', alt: 'Model u tamnosivoj oversize BrutalWear majici s grafikom ispred zida s grafitima' },
+        { no: '02', name: 'Oversize', desc: 'Spušteno rame, šira silueta. Za one koji zauzimaju prostor.', img: 'assets/65a800868c9197d62db6dce18d31f0d0.jpg', alt: 'Model u crnoj oversize BrutalWear majici s velikim printom na leđima, u prolazu s grafitima' },
+        { no: '03', name: 'Grafičke', desc: 'Sirove grafike i tipografija. Ograničene serije, bez reprinta.', img: 'assets/4a0809b6a0acb2025d38463b50e626e0.jpg', alt: 'Model u crnoj oversize majici s velikom gotik grafikom u crveno-bijelom printu' }
+      ].map((l) => ({ ...l, noImg: !l.img })),
+      drops: [
+        { name: 'Bazzi feat. 21 Savage', price: '45 €', color: 'Crna', isNew: true, img: 'assets/7e241726627507a5102ebfadac0380e5.png', alt: 'Isprana tamnosiva majica s plavim portretom i crvenim tekstom' },
+        { name: 'Kepler-228', price: '35 €', color: 'Crna', isNew: true, img: 'assets/8cb81048eaea904ff1c1d6d913b2e0e8.png', alt: 'Crna oversize majica s leđa, s linijskom grafikom orbita i ljubičastim tekstom' },
+        { name: 'Cyber WMN', price: '30 €', color: 'Crna / bijela', isNew: true, img: 'assets/a5c75129b266a740dbddee596c2d7f58.png', alt: 'Crna majica s ružičastom ilustracijom djevojke s maskom' },
+        { name: 'Overthinker', price: '25 €', color: 'Isprana crna', isNew: true, img: 'assets/d6148aea90118bfb6f3f515f4679f8b6.png', alt: 'Isprana crna majica s anime stripom u kvadratima' }
+      ].map((d) => ({ ...d, noImg: !d.img, href: d.name === 'Kepler-228' ? 'kepler-228.html' : d.name === 'Cyber WMN' ? 'cyber-wmn.html' : d.name === 'Overthinker' ? 'overthinker.html' : 'bazzi-feat-21-savage.html' })),
+      reviews: [
+        { text: 'Kvalitet materijala je brutalan, tačno se osjeti težina pamuka kad je obučeš.', name: 'Stefan M.', initials: 'SM', verb: 'Kupio', item: 'Bazzi feat. 21 Savage' },
+        { text: 'Već mi je omiljeni komad u garderobi.', name: 'Ana K.', initials: 'AK', verb: 'Kupila', item: 'Kepler-228' },
+        { text: 'Materijal je čvrst, ne gubi oblik poslije pranja. Čista desetka!', name: 'Dino T.', initials: 'DT', verb: 'Kupio', item: 'Overthinker' }
+      ],
+      notJoined: !this.state.joined,
+      joined: this.state.joined,
+      join: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ joined: true }); }
+    };
+  }
+}
+DCLite.mount(Component, {"accent": "#bc2624", "eyebrowOn": true, "eyebrowText": "Ulična odjeća ", "eyebrowColor": "#F2F2EE", "eyebrowSize": 12, "eyebrowTracking": 0.2, "eyebrowCase": "uppercase", "eyebrowGap": 4, "overlay": 0.65});
+</script>
+</body>
+</html>

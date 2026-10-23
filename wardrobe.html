@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BrutalWear — Wardrobe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;background:#0A0A0A}
+a{color:#F2F2EE}a:hover{color:#bc2624}
+.ph{background-color:#161616;background-image:repeating-linear-gradient(135deg,#1F1F1F 0 2px,transparent 2px 14px)}
+.btn{transition:transform .12s ease}
+.btn:hover{transform:translate(-3px,-3px)}
+.card:hover .ph{border-color:#bc2624}
+@media (max-width:720px){.hdr{grid-template-columns:1fr auto !important}.hdr nav{grid-column:1 / -1;order:3;justify-content:center}}
+</style>
+<style>html,body{margin:0;background:#0A0A0A}*,*::before,*::after{box-sizing:border-box}img,video{max-width:100%}</style>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-tpl">
+<div style="min-height: 100vh; background: #0A0A0A; color: #F2F2EE; font-family: 'Space Mono', ui-monospace, monospace; font-size: 15px; line-height: 1.5">
+
+<header style="border-bottom: 2px solid #F2F2EE">
+<div class="hdr" style="max-width: 1360px; margin: 0 auto; padding: 18px 24px; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px">
+<a href="index.html" style="justify-self: start; white-space: nowrap; font-family: 'Archivo Black', sans-serif; font-size: 26px; letter-spacing: -0.02em; text-decoration: none; color: #F2F2EE">BRUTAL<span style="color: {{accent}}">WEAR</span></a>
+<nav aria-label="Glavna navigacija" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase">
+<a href="index.html" style="text-decoration: none">Početna</a>
+<a href="wardrobe.html" style="text-decoration: none; color: {{accent}}">Wardrobe</a>
+<a href="index.html#novi-drop" style="text-decoration: none">Novo</a>
+<a href="prijava.html" style="text-decoration: none">Prijava</a>
+</nav>
+<div style="justify-self: end; display: flex">
+<a href="prijava.html" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; white-space: nowrap; padding: 0 16px; border: 2px solid #F2F2EE; text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 8h14l-1.5 12h-11z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg>
+Korpa (0)
+</a>
+</div>
+</div>
+</header>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 56px 24px 32px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8A84"><a href="index.html" style="color: #8A8A84">Početna</a> / Wardrobe</div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px; margin-top: 4px">
+<h1 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: clamp(56px, 9vw, 136px); line-height: 0.86; letter-spacing: -0.04em; text-transform: uppercase">Ward<span style="color: {{accent}}">robe</span></h1>
+<p style="margin: 0; max-width: 380px; color: #BDBDB6">Sve majice na jednom mjestu. Filtriraj po liniji, klikni na komad za detalje i veličine.</p>
+</div>
+</section>
+
+<div style="border-top: 2px solid #F2F2EE; border-bottom: 2px solid #F2F2EE; position: sticky; top: 0; background: #0A0A0A; z-index: 2">
+<div style="max-width: 1360px; margin: 0 auto; padding: 20px 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
+<div role="group" aria-label="Filter po liniji" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+<button type="button" onClick="{{f.pick}}" aria-pressed="{{f.pressed}}" style="{{f.style}}">{{f.label}}</button>
+</sc-for>
+</div>
+<div style="min-width: min(380px, 100%); margin-left: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 13px">
+<span style="color: #8A8A84; letter-spacing: 0.04em; white-space: nowrap">{{count}} komada</span>
+<label for="sort" style="font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1; white-space: nowrap">Sortiraj prema</label>
+<select id="sort" value="{{sort}}" onChange="{{pickSort}}" style="min-height: 44px; padding: 0 12px; background: #0A0A0A; color: #F2F2EE; border: 2px solid #F2F2EE; font-family: inherit; font-size: 13px; cursor: pointer">
+<option value="new">Najnovije</option>
+<option value="pasc">Cijena: od najniže</option>
+<option value="pdesc">Cijena: od najviše</option>
+<option value="az">Naziv A–Z</option>
+<option value="za">Naziv Z–A</option>
+</select>
+</div>
+</div>
+</div>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 40px 24px 96px">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 32px 24px">
+<sc-for list="{{items}}" as="p" hint-placeholder-count="9">
+<a class="card" href="{{p.href}}" style="text-decoration: none; color: #F2F2EE; display: flex; flex-direction: column; gap: 12px">
+<div class="ph" style="aspect-ratio: 4 / 5; border: 2px solid #F2F2EE; display: flex; align-items: center; justify-content: center; position: relative">
+<sc-if value="{{p.img}}" hint-placeholder-val="{{false}}">
+<img src="{{p.img}}" alt="{{p.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; background: #FFFFFF; display: block">
+</sc-if>
+<sc-if value="{{p.noImg}}" hint-placeholder-val="{{true}}">
+<span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8A84">[FOTO — {{p.name}}]</span>
+</sc-if>
+<sc-if value="{{p.isNew}}" hint-placeholder-val="{{false}}">
+<span style="position: absolute; top: 12px; left: 12px; background: {{accent}}; color: #f2f2ee; padding: 4px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em">NOVO</span>
+</sc-if>
+<sc-if value="{{p.showLine}}" hint-placeholder-val="{{true}}">
+<span style="position: absolute; bottom: 12px; right: 12px; border: 2px solid #F2F2EE; background: #0A0A0A; padding: 4px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase">{{p.line}}</span>
+</sc-if>
+</div>
+<div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em">
+<span>{{p.name}}</span><span style="color: {{accent}}; white-space: nowrap">{{p.priceLabel}}</span>
+</div>
+<span style="font-size: 12px; color: #8A8A84; margin-top: -8px">{{p.color}} · S–XXL</span>
+</a>
+</sc-for>
+</div>
+
+<div style="display: flex; justify-content: center; margin-top: 64px">
+<sc-if value="{{hasMore}}" hint-placeholder-val="{{true}}">
+<button class="btn" type="button" onClick="{{loadMore}}" style="min-height: 56px; padding: 0 36px; background: transparent; color: #F2F2EE; border: 2px solid #F2F2EE; box-shadow: 6px 6px 0 {{accent}}; font-family: inherit; font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer">Učitaj još</button>
+</sc-if>
+<sc-if value="{{allShown}}" hint-placeholder-val="{{false}}">
+<a class="btn" href="index.html" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 36px; border: 2px solid #F2F2EE; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase">To je sve · Nazad na početnu</a>
+</sc-if>
+</div>
+</section>
+
+<footer style="border-top: 2px solid #F2F2EE">
+<div style="max-width: 1360px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-size: 13px; color: #8A8A84">
+<span>© [GODINA] BrutalWear</span>
+<a href="prijava.html" style="color: #F2F2EE">Nisi član? Prijavi se →</a>
+</div>
+</footer>
+
+</div>
+</template>
+<script>
+/* dc-lite.js — mali runtime za BrutalWear stranice.
+   Čita <template id="dc-tpl">, popunjava {{rupe}}, <sc-for>, <sc-if>
+   i ponovo crta stranicu kad se stanje promijeni (setState). */
+(function () {
+  'use strict';
+
+  class DCLogic {
+    constructor(props) { this.props = props || {}; this.state = {}; }
+    setState(patch) {
+      const next = typeof patch === 'function' ? patch(this.state, this.props) : patch;
+      this.state = Object.assign({}, this.state, next);
+      if (this.__render) this.__render();
+    }
+    forceUpdate() { if (this.__render) this.__render(); }
+  }
+  window.DCLogic = DCLogic;
+
+  const HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+  const WHOLE = /^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/;
+
+  function lookup(scope, path) {
+    path = path.trim();
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    if (/^(['"]).*\1$/.test(path)) return path.slice(1, -1);
+    let v = scope;
+    for (const key of path.split('.')) {
+      if (v == null) return undefined;
+      v = v[key];
+    }
+    return v;
+  }
+
+  function interp(str, scope) {
+    return str.replace(HOLE, (_, p) => {
+      const v = lookup(scope, p);
+      return v == null ? '' : String(v);
+    });
+  }
+
+  function wholePath(str) {
+    const m = str && str.match(WHOLE);
+    return m ? m[1] : null;
+  }
+
+  const BOOL_PROPS = { muted: 'muted', autoplay: 'autoplay', loop: 'loop', playsinline: 'playsInline', checked: 'checked', disabled: 'disabled' };
+
+  function build(src, scope, out, refs) {
+    for (const node of src.childNodes) {
+      if (node.nodeType === 3) {
+        out.appendChild(document.createTextNode(interp(node.nodeValue, scope)));
+        continue;
+      }
+      if (node.nodeType !== 1) continue;
+      const tag = node.localName;
+
+      if (tag === 'sc-for') {
+        const list = lookup(scope, wholePath(node.getAttribute('list')) || '') || [];
+        const as = node.getAttribute('as') || 'item';
+        list.forEach((item, i) => {
+          const s = Object.create(scope);
+          s[as] = item;
+          s.$index = i;
+          build(node, s, out, refs);
+        });
+        continue;
+      }
+      if (tag === 'sc-if') {
+        const p = wholePath(node.getAttribute('value'));
+        if (p && lookup(scope, p)) build(node, scope, out, refs);
+        continue;
+      }
+
+      const el = document.createElementNS(node.namespaceURI, node.localName);
+      let selectValue = null;
+      for (const attr of Array.from(node.attributes)) {
+        const name = attr.name;
+        const raw = attr.value;
+        const wp = wholePath(raw);
+        if (name.length > 2 && name.startsWith('on') && wp) {
+          const fn = lookup(scope, wp);
+          if (typeof fn === 'function') el.addEventListener(name.slice(2), fn);
+          continue;
+        }
+        if (name === 'ref') {
+          const fn = wp ? lookup(scope, wp) : null;
+          if (typeof fn === 'function') refs.push(() => fn(el));
+          continue;
+        }
+        if (name.startsWith('hint-')) continue;
+        let value;
+        if (wp) {
+          value = lookup(scope, wp);
+          if (value === false || value == null) continue;
+          if (value === true) {
+            el.setAttribute(name, '');
+            if (BOOL_PROPS[name]) el[BOOL_PROPS[name]] = true;
+            continue;
+          }
+          value = String(value);
+        } else {
+          value = interp(raw, scope);
+        }
+        if (tag === 'select' && name === 'value') { selectValue = value; continue; }
+        el.setAttribute(name, value);
+      }
+      build(node, scope, el, refs);
+      if (selectValue !== null) el.value = selectValue;
+      out.appendChild(el);
+    }
+  }
+
+  window.DCLite = {
+    mount(Component, props) {
+      const tpl = document.getElementById('dc-tpl').content;
+      const root = document.getElementById('dc-root');
+      const comp = new Component(props || {});
+      let first = true;
+      comp.__render = function () {
+        // sačuvaj ono što je korisnik upisao u polja
+        const saved = {};
+        root.querySelectorAll('input[id], textarea[id]').forEach((f) => {
+          saved[f.id] = f.type === 'checkbox' ? f.checked : f.value;
+        });
+        const focusedId = document.activeElement && document.activeElement.id;
+
+        const vals = comp.renderVals() || {};
+        const refs = [];
+        const frag = document.createDocumentFragment();
+        build(tpl, vals, frag, refs);
+        root.replaceChildren(frag);
+
+        Object.keys(saved).forEach((id) => {
+          const f = document.getElementById(id);
+          if (!f) return;
+          if (f.type === 'checkbox') f.checked = saved[id]; else f.value = saved[id];
+        });
+        if (focusedId) { const f = document.getElementById(focusedId); if (f) f.focus({ preventScroll: true }); }
+        refs.forEach((r) => r());
+
+        if (first) {
+          first = false;
+          if (typeof comp.componentDidMount === 'function') comp.componentDidMount();
+          if (location.hash) {
+            const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+            if (t) t.scrollIntoView();
+          }
+        } else if (typeof comp.componentDidUpdate === 'function') {
+          comp.componentDidUpdate();
+        }
+      };
+      comp.__render();
+    }
+  };
+})();
+
+</script>
+<script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { line: 'Sve', sort: 'new', shown: 6 };
+  }
+  renderVals() {
+    const accent = this.props.accent ?? '#F04CC0';
+    const all = [
+      { name: 'Bazzi feat. 21 Savage', price: '45 €', line: 'Basic Heavy', color: 'Crna', isNew: true, img: 'assets/7e241726627507a5102ebfadac0380e5.png', alt: 'Isprana tamnosiva majica s plavim portretom i crvenim tekstom' },
+      { name: 'Kepler-228', price: '35 €', line: 'Oversize', color: 'Crna', isNew: true, img: 'assets/8cb81048eaea904ff1c1d6d913b2e0e8.png', alt: 'Crna oversize majica s leđa, s linijskom grafikom orbita i ljubičastim tekstom' },
+      { name: 'Cyber WMN', price: '30 €', line: 'Grafičke', color: 'Crna / bijela', isNew: true, img: 'assets/a5c75129b266a740dbddee596c2d7f58.png', alt: 'Crna majica s ružičastom ilustracijom djevojke s maskom' },
+      { name: 'Overthinker', price: '25 €', line: 'Basic Heavy', color: 'Isprana crna', isNew: true, img: 'assets/d6148aea90118bfb6f3f515f4679f8b6.png', alt: 'Isprana crna majica s anime stripom u kvadratima' },
+      { name: 'Anime Cyber', price: '15 €', line: 'Oversize', color: 'Crna', isNew: false, img: 'assets/589ef6173702663f819d22886186339c.png', alt: 'Crna majica s leđa, s crno-bijelim manga kadrovima i natpisom' },
+      { name: 'Japan', price: '10 €', line: 'Grafičke', color: 'Crna / [AKCENT]', isNew: false, img: 'assets/fc31e50dd719e1b8348a889c6eeb080c.png', alt: 'Crna majica s koraljno-crvenim tipografskim printom i ilustracijom lika s kapom' },
+      { name: 'Bones', price: '30 €', line: 'Basic Heavy', color: 'Isprana crna', isNew: false, img: 'assets/fb0e09eb510819f0768d77430497589a.png', alt: 'Isprana crna majica s printom kostura rebara i strelica' },
+      { name: 'Mirror', price: '20 €', line: 'Oversize', color: 'Isprana crna', isNew: false, img: 'assets/42cdabbf82ce183bcbad8c2e8d566561.png', alt: 'Isprana crna oversize majica s crno-bijelim printom dva lica i tekstom' },
+      { name: 'Brutal', price: '10 €', line: 'Grafičke', color: 'Bijela', isNew: false, img: 'assets/e08dbe6f30bd6fcb3215c15ac2b75a78.png', alt: 'Crna majica s bijelim tipografskim printom i ilustracijom lika u bijeloj jakni' }
+    ];
+    const cur = this.state.line;
+    const base = 'min-height: 44px; padding: 0 18px; font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border: 2px solid ';
+    const filters = ['Sve', 'Basic Heavy', 'Oversize', 'Grafičke'].map((label) => {
+      const on = label === cur;
+      return {
+        label,
+        pressed: on ? 'true' : 'false',
+        style: base + (on ? accent + '; background: ' + accent + '; color: #0A0A0A' : '#F2F2EE; background: transparent; color: #F2F2EE'),
+        pick: () => this.setState({ line: label, shown: 6 })
+      };
+    });
+    const filtered = (cur === 'Sve' ? all : all.filter((p) => p.line === cur)).slice();
+    const sort = this.state.sort;
+    if (sort === 'az') filtered.sort((a, b) => a.name.localeCompare(b.name));
+    if (sort === 'za') filtered.sort((a, b) => b.name.localeCompare(a.name));
+    const num = (p) => parseFloat(p.price) || 0;
+    if (sort === 'pasc') filtered.sort((a, b) => num(a) - num(b));
+    if (sort === 'pdesc') filtered.sort((a, b) => num(b) - num(a));
+    if (sort === 'new') filtered.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+    const items = filtered.slice(0, this.state.shown).map((p) => ({ ...p, noImg: !p.img, showLine: cur === 'Sve', priceLabel: p.price || '[CIJENA]', href: p.name === 'Kepler-228' ? 'kepler-228.html' : p.name === 'Cyber WMN' ? 'cyber-wmn.html' : p.name === 'Overthinker' ? 'overthinker.html' : p.name === 'Bones' ? 'bones.html' : p.name === 'Anime Cyber' ? 'anime-cyber.html' : p.name === 'Mirror' ? 'mirror.html' : p.name === 'Japan' ? 'japan.html' : p.name === 'Brutal' ? 'brutal.html' : 'bazzi-feat-21-savage.html' }));
+    const hasMore = filtered.length > items.length;
+    return {
+      accent, filters, items, sort,
+      count: filtered.length,
+      hasMore,
+      allShown: !hasMore,
+      loadMore: () => this.setState({ shown: this.state.shown + 6 }),
+      pickSort: (e) => this.setState({ sort: e.target.value })
+    };
+  }
+}
+DCLite.mount(Component, {"accent": "#bc2624"});
+</script>
+</body>
+</html>
